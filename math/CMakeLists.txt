@@ -1,0 +1,5 @@
+AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} MATH_SRCS)
+MESSAGE(${MATH_SRCS})
+add_library(math STATIC ${MATH_SRCS}
+                        )
+	
