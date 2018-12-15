@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../math/Matrix4D.h"
-#include "../math/Vector3D.h"
+#include "math/Matrix4D.h"
+#include "math/Vector3D.h"
 using namespace Math;
 double radian(float degrees)
 {

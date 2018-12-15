@@ -48,7 +48,6 @@ namespace SRE {
 	void HardwareTextureBuffer::blitFromMemory(PixelBox::ptr data)
 	{
 		//
-		std::cout <<"fault segment";
 		PixelBox *box = new PixelBox(_width, _height, _depth, _format, 0); //ֻ�ǹ���һ����
 		blitFromMemory(data, (PixelBox::ptr)box);
 	}
@@ -56,7 +55,6 @@ namespace SRE {
 	void HardwareTextureBuffer::blitFromMemory(PixelBox::ptr data, PixelBox::ptr dst)
 	{
 		//PixelBox scaled;
-		std::cout <<"fault segment";
 		if (data->getWidth() != dst->getWidth() ||
 			data->getHeight() != dst->getHeight() ||
 			data->getDepth() != dst->getDepth())
