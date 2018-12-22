@@ -15,7 +15,22 @@ namespace Math {
 		0, 0, 0, 1);
 	Matrix4D::Matrix4D()
 	{
-
+		_m[0] = 1;
+		_m[1] = 0;
+		_m[2] = 0;
+		_m[3] = 0;
+		_m[4] = 0;
+		_m[5] = 1;
+		_m[6] = 0;
+		_m[7] = 0;
+		_m[8] = 0;
+		_m[9] = 0;
+		_m[10] = 1;
+		_m[11] = 0;
+		_m[12] = 0;
+		_m[13] = 0;
+		_m[14] = 0;
+		_m[15] = 1;
 	}
 
 	Matrix4D::Matrix4D(const Vector4D& v0, const Vector4D& v1, const Vector4D& v2, const Vector4D& v3)

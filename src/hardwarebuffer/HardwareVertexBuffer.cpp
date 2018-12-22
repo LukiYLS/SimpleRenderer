@@ -11,7 +11,8 @@ namespace SRE {
 		_usage(usage),
 		_useShadowBuffer(useShadowBuffer),
 		_lockSize(0),
-		_lockStart(0)
+		_lockStart(0),
+		_isLocked(false)
 	{
 		//Ӱ�ӻ�������������Ϊ�����ڴ浱����һ�ݶ���ı������ݣ��������Զ�ȡ
 		_sizeInBytes = numVertices * vertexSize;

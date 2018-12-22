@@ -92,8 +92,8 @@ namespace SRE {
 		size_t maxMips = PixelUtil::getMaxMipmaps(_width, _height, _depth, _pixelFormat);
 		if (_numMipMaps > maxMips)
 			_numMipMaps = maxMips;
+		if (_autoGenerateMipMap) _numMipMaps = 1;
 		unsigned int numMipMaps = _numMipMaps;
-		if (_autoGenerateMipMap) numMipMaps = 1;
 		size_t width = _width;
 		size_t height = _height;
 		size_t depth = _depth;
@@ -126,7 +126,6 @@ namespace SRE {
 		_surface_list.clear();
 
 		unsigned int numMipMaps = _numMipMaps;
-		if (_autoGenerateMipMap) numMipMaps = 1;
 
 		for (GLuint face = 0; face < getNumFaces(); face++)
 		{
@@ -167,6 +166,9 @@ namespace SRE {
 
 
 	}
+	/**
+	 * 先从显卡中申请内存，upload的时候直接获取属性
+	 */
 	void Texture::createInternalResources()
 	{
 		if (_resourceCreated)return;
@@ -186,13 +188,13 @@ namespace SRE {
 		unsigned height = _height;
 		unsigned depth = _depth;
 		GLenum format = PixelUtil::getClosestGLInternalFormat(_pixelFormat);
-
-		if (PixelUtil::isCompressed(_pixelFormat))
+		bool isCompressed = PixelUtil::isCompressed(_pixelFormat);//目前这个判断是有问题的
+		if (false)
 		{
 		}
 		else
 		{
-			for (unsigned short mip = 0; mip < _numMipMaps; mip++)
+			for (unsigned short mip = 0; mip < 1; mip++)
 			{
 				switch (_textureType)
 				{

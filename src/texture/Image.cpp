@@ -140,6 +140,7 @@ namespace SRE {
 			bits[index] = bits[index + 2];
 			bits[index + 2] = temp_color;
 		}
+		//这里怎么能写死呢？？？
 		_pixelFormat = PF_BYTE_RGBA;
 		_buffer = (unsigned char*)malloc(sizeof(char) * bit_count);
 		memcpy(_buffer, bits, sizeof(char) * bit_count);

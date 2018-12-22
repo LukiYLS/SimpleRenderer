@@ -59,7 +59,6 @@ namespace SRE {
 			data->getHeight() != dst->getHeight() ||
 			data->getDepth() != dst->getDepth())
 		{
-			//��Ҫ����
 			// Scale to destination size.
 			// This also does pixel format conversion if needed
 			//allocateBuffer();
@@ -114,7 +113,6 @@ namespace SRE {
 	{
 		if (PixelUtil::isCompressed(data->getPixelFormat()))
 		{
-			//ѹ������Ļ�δ����....
 			GLenum format = PixelUtil::getClosestGLInternalFormat(_format);
 			switch (_target) {
 			case GL_TEXTURE_1D:
@@ -182,7 +180,7 @@ namespace SRE {
 		}
 		else if (_softwareMipmap)
 		{
-			//3.0֮��ͳһ����glGenerateMipmap
+			//3.0֮ support glGenerateMipmap
 			/*GLenum format = PixelUtil::getClosestGLInternalFormat(_format);
 			if (data->getWidth() != data->getRowPitch())
 				glPixelStorei(GL_UNPACK_ROW_LENGTH, data->getRowPitch());
@@ -243,16 +241,15 @@ namespace SRE {
 		}
 		else
 		{
-			//�������������ά��
-			if (data->getWidth() != data->getRowPitch())//��Ȳ���
-				glPixelStorei(GL_UNPACK_ROW_LENGTH, data->getRowPitch());////ָ������������ԭͼ�Ŀ��
+			if (data->getWidth() != data->getRowPitch())//
+				glPixelStorei(GL_UNPACK_ROW_LENGTH, data->getRowPitch());
 
-			//glPixelStorei(GL_UNPACK_SKIP_ROWS, data->); //ָ���������ƫ��ԭ��ĸ߶�ֵ
-			//glPixelStorei(GL_UNPACK_SKIP_PIXELS, data->);  //ָ���������ƫ��ԭ��Ŀ��ֵ
+			//glPixelStorei(GL_UNPACK_SKIP_ROWS, data->); 
+			//glPixelStorei(GL_UNPACK_SKIP_PIXELS, data->);  
 
 			if (data->getHeight()*data->getWidth() != data->getSlicePitch())
 				glPixelStorei(GL_UNPACK_IMAGE_HEIGHT, (data->getSlicePitch() / data->getWidth()));
-			if (data->getLeft() > 0 || data->getTop() > 0 || data->getFront() > 0)//���ǰ����������skip pixel
+			if (data->getLeft() > 0 || data->getTop() > 0 || data->getFront() > 0)
 				glPixelStorei(GL_UNPACK_SKIP_PIXELS, data->getLeft() + data->getRowPitch() * data->getTop() + data->getRowPitch() * data->getFront());
 			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			//if ((data.getWidth()*PixelUtil::getNumElemBytes(data.format)) & 3) {
@@ -291,7 +288,7 @@ namespace SRE {
 				glGenerateMipmap(_target);
 		}
 
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 4); //�ָ�Ĭ��ֵ 
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 4); 
 		glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
 		glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
 	}
@@ -303,7 +300,6 @@ namespace SRE {
 
 	void* HardwareTextureBuffer::lock(unsigned int offset, unsigned int length, LockOptions options)
 	{
-		//��������������Ŀ���ǣ�
 		if (isLocked())
 		{
 			//assert or log
@@ -320,12 +316,9 @@ namespace SRE {
 	PixelBox::ptr HardwareTextureBuffer::lock(PixelBox::ptr box, HardwareBuffer::LockOptions options)
 	{
 		PixelBox::ptr  pixel_box = _buffer;
-		//�ȸ���ǰbuffer����ռ�
 		pixel_box->allocateBuffer(_sizeInBytes);
 		if (options != HBL_DISCARD)
 		{
-			//��GPU���õ�����
-			//���ܴ��Կ�ֱ�ӵõ�������(���ܣ�
 			download(_buffer);
 		}
 		_currentLockOptions = options;

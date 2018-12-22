@@ -22,8 +22,17 @@ set(thirdparty_libs
     freeimage
     glfw)
 
+set(SRC_PATH ${CBOKEH_ROOT_DIR}/src CACHE FILEPATH "Full path of the file")
+file(TO_CMAKE_PATH "${SRC_PATH}" FILE_PATH_NORMALIZED)
+add_definitions(-DSRC_PATH="${FILE_PATH_NORMALIZED}")
+
 add_subdirectory(math)
 add_subdirectory(hardwarebuffer)
 add_subdirectory(texture)
+add_subdirectory(light)
+add_subdirectory(graphic)
+add_subdirectory(object)
+add_subdirectory(tools)
+add_subdirectory(utils)
 add_subdirectory(example)
 

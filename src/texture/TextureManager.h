@@ -31,9 +31,9 @@ namespace SRE {
 		void addTexture(const std::string texName, GLuint textureID);
 
 	protected:
-		TextureManager();//��ֹ����
-		TextureManager(const TextureManager& tm);//��ֹ����
-		TextureManager& operator=(const TextureManager& tm);//��ֹ��ֵ
+		TextureManager();
+		TextureManager(const TextureManager& tm);
+		TextureManager& operator=(const TextureManager& tm);
 
 		static TextureManager* m_inst;
 		std::map<std::string, GLuint> m_texID;
