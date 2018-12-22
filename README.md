@@ -16,3 +16,9 @@
 
 
 
+全球数据标准尝试
+
+![有光照 ](screenshot/global_earth.png  "有光照")
+
+
+
